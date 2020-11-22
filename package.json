@@ -1,0 +1,23 @@
+{
+  "name": "projectc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "routify -c my-server",
+    "my-server": "rollup -c -w",
+    "build": "routify -b && rollup -c",
+    "start": "sirv public --single"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yustarandomname/projectC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yustarandomname/projectC/issues"
+  },
+  "homepage": "https://github.com/yustarandomname/projectC#readme"
+}
