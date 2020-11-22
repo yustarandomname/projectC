@@ -14,7 +14,7 @@
       <h1>Welcome {user.uid}</h1>
     </Container>
 
-    <div slot="logged-out">
+    <div slot="signed-out">
       <Login />
     </div>
   </User>
