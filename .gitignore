@@ -1,0 +1,8 @@
+/node_modules/
+/dist/
+.DS_Store
+**/.history
+src/pages/demo/
+src/pages/admin/
+.vscode
+.firebase/hosting.ZGlzdA.cache
