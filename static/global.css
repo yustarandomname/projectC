@@ -1,0 +1,174 @@
+:root {
+	--green: #009688;
+	--secondary: #7cc7bd;
+	--blue: #4b97c9;
+	--red: #cd442f;
+	--orange: #e5a241;
+	--warning: var(--orange);
+	--unfocus: #808080;
+	--error: var(--red);
+
+	/* size */
+	--small: 20rem;
+	--base: 40rem;
+	--medium: 60rem;
+	--big: 80rem;
+}
+
+* {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	outline: none;
+	caret-color: black !important;
+}
+
+::-webkit-scrollbar {
+	width: 0;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	width: 100vw;
+	overflow-x: hidden;
+	font-family: 'Roboto', sans-serif;
+	background: white;
+}
+
+.hide {
+	display: none !important;
+}
+
+.show {
+	display: block !important;
+}
+
+li {
+	margin: 0.125rem;
+}
+
+a {
+	color: black;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.unfocus {
+	color: var(--unfocus);
+}
+
+.error {
+	color: var(--error);
+}
+
+.highlight {
+	padding: .1rem .2rem;
+	background: #e0e0e0;
+	border-radius: .25rem;
+	font-style: italic;
+}
+
+/* FORMAT */
+.title {
+	width: 100%;
+	font-size: 1.5rem;
+	margin-bottom: .5rem;
+	/* font-weight: bold; */
+}
+
+.subTitle {
+	width: 100%;
+	font-size: 1.2rem;
+}
+
+p {
+	margin: .5rem 0;
+}
+
+.fontSizeNormal {
+	font-weight: unset !important;
+}
+
+/* input */
+input,
+textarea {
+	width: 100%;
+	display: block;
+	border: none;
+	border-radius: 0;
+	outline: none;
+	font-size: .9rem;
+	font-family: 'Roboto', 'Arial', sans-serif;
+	background: transparent;
+}
+
+input[type="submit"] {
+	-webkit-appearance: none;
+	opacity: 1;
+}
+
+/* Buttons */
+
+.submit {
+	position: absolute;
+	right: 1rem;
+	bottom: 1rem;
+	padding: .25rem;
+	border-radius: .5rem;
+	background: #afe4b5;
+	cursor: pointer;
+}
+
+.submit:hover {
+	box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* Grids */
+.grid {
+	display: grid;
+	position: relative;
+}
+
+.grid > .hoverable {
+	position: relative;
+	width: 100%;
+	box-shadow: 5px 5px 1rem rgba(0, 0, 0, 0.1);
+	border-radius: 0.5rem;
+	cursor: pointer;
+}
+
+.grid > .hoverable:after {
+	content: "";
+	display: block;
+	padding-bottom: 100%;
+	border-radius: 0.5rem;
+}
+
+.grid .type {
+	right: 0.5rem;
+	top: 0.5rem;
+}
+
+.grid .overlay {
+	height: 100%;
+	width: 100%;
+}
+
+/* for tablets max columns is 3 */
+@media only screen and (max-width: 768px) {
+	.normalGrid {
+		grid-template-columns: repeat(3, 1fr) !important;
+	}
+}
+
+/* for phones max columns is 2 */
+@media only screen and (max-width: 500px) {
+	.normalGrid {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+}
