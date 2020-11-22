@@ -171,7 +171,6 @@
 </script>
 
 <Container>
-  {isKnownEmail}
   <!-- if user filled in an email which is registered by our database -->
   {#if !isKnownEmail}
     <div class="title" on:click={checkEmail}>Nice to meet you</div>

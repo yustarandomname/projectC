@@ -1,6 +1,6 @@
 <script>
   export let icon = "⋰";
-  export let tooltip = "";
+  export let toolTip = "";
   export let toolSide = "bottom";
   export let size = "1rem";
 </script>
@@ -12,6 +12,7 @@
     padding: 0.5rem;
     transition: 0.3s;
     font-size: 0.8rem;
+    user-select: none;
   }
 
   .tooltip {
@@ -42,7 +43,12 @@
   </div>
 
   <!-- TODO: Animate this	 -->
-  {#if tooltip}
-    <div class="tooltip" class:toolTop={toolSide == 'top'}>{tooltip}</div>
+  {#if toolTip}
+    <div
+      class="tooltip"
+      class:toolTop={toolSide == 'top'}
+      class:toolLeft={(toolSide = 'left')}>
+      {toolTip}
+    </div>
   {/if}
 </div>
