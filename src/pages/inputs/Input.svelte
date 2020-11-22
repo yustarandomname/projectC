@@ -20,7 +20,6 @@
   form.fields[title] = attributes;
 
   // Update component isRaised
-  // TODO: try to eliminate
   function handleKeyup(e) {
     attributes.isRaised = attributes.value && attributes.value.length > 0;
 
