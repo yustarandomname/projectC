@@ -1,5 +1,5 @@
 <script>
-  import Input from "./../../inputs/Input.svelte";
+  import Input from "./../inputs/Input.svelte";
 
   export let form = {};
 

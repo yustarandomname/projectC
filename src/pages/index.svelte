@@ -1,8 +1,8 @@
 <script>
-  import EmptyContainer from "./_components/containers/EmptyContainer.svelte";
-  import Button from "./_components/buttons/Button.svelte";
-  import Container from "./_components/Containers/container.svelte";
-  import Login from "./_components/authentication/Login.svelte";
+  import EmptyContainer from "./../_components/containers/EmptyContainer.svelte";
+  import Button from "./../_components/buttons/Button.svelte";
+  import Container from "./../_components/Containers/container.svelte";
+  import Login from "./../_components/authentication/Login.svelte";
 
   import { FirebaseApp, User, Doc } from "sveltefire";
   import { url } from "@sveltech/routify";
@@ -30,7 +30,7 @@
         <div class="appGrid">
           {#each Object.entries(user.apps) as [title, app]}
             <a href={$url('/' + app.url)} style="order:{app.order}">
-              <Button icon="X" toolTip={title} />
+              <Button icon={app.icon || 'X'} toolTip={title} />
             </a>
           {/each}
         </div>
