@@ -22,6 +22,23 @@
   let hoveringOverFolder = null;
   let fileBeingDragged = null;
 
+  const fileContext = file => {
+    return {
+      isVisible: false,
+      fields: {
+        Duplicate: () => {
+          console.log(`duplicate ${file.title}`);
+        },
+        Rename: () => {
+          console.log(`update ${file.title}`);
+        },
+        Delete: () => {
+          console.log(`delete ${file.title}`);
+        }
+      }
+    };
+  };
+
   function createFolder() {
     form = {
       header: "Create file",
@@ -169,6 +186,7 @@
         <SearchQuery items={files} filterOn={'title'} let:item={file}>
           <div draggable={true} on:dragstart={() => (fileBeingDragged = file)}>
             <HoverContainer
+              contextMenu={fileContext(file)}
               on:click={() => $goto(`/files/${file.type}/${user.uid}/${file.id}`)}>
               <div slot="title">{file.title}</div>
             </HoverContainer>

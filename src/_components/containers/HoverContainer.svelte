@@ -1,6 +1,15 @@
 <script>
   export let background = "";
   export let ratio = 1;
+  export let contextMenu = false;
+
+  const toggleContextMenu = _ => {
+    contextMenu.isVisible = !contextMenu.isVisible;
+  };
+
+  const hideContextMenu = _ => {
+    //contextMenu.isVisible = false;
+  };
 </script>
 
 <style>
@@ -31,6 +40,7 @@
     transition: 0.3s;
   }
 
+  .relativeContainer:hover .container,
   .container:hover {
     transform: scale(1.1);
   }
@@ -54,12 +64,43 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  /* CONTEXT MENU */
+  .contextMenu {
+    position: absolute;
+    left: calc(100% + 1rem);
+    top: 0;
+    width: 5rem;
+    height: fit-content;
+    min-height: 100%;
+    z-index: 10;
+    box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    background: white;
+  }
 </style>
 
-<div class="relativeContainer" style="height:{ratio * 100}%">
-  <div class="container" style="background:{background}" on:click>
-    <div class="centerTitle">
-      <slot name="title" />
+{#if contextMenu}
+  <div
+    class="relativeContainer"
+    style="height:{ratio * 100}%"
+    on:contextmenu|preventDefault={toggleContextMenu}>
+    <div class="container" style="background:{background}" on:click>
+      <div class="centerTitle">
+        <slot name="title" />
+      </div>
+    </div>
+
+    {#if contextMenu.isVisible}
+      <div class="contextMenu" />
+    {/if}
+  </div>
+{:else}
+  <div class="relativeContainer " style="height:{ratio * 100}%">
+    <div class="container" style="background:{background}" on:click>
+      <div class="centerTitle">
+        <slot name="title" />
+      </div>
     </div>
   </div>
-</div>
+{/if}
