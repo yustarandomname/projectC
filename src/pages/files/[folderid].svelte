@@ -27,7 +27,8 @@
       header: "Create file",
       fields: {
         Title: {
-          type: "text"
+          type: "text",
+          required: true
         },
         "Create folder": {
           type: "submit",
@@ -42,7 +43,8 @@
       header: "Create file",
       fields: {
         Title: {
-          type: "text"
+          type: "text",
+          required: true
         },
         "File type": {
           type: "radio",
@@ -68,7 +70,7 @@
         inFolder: folderid
       })
       .then(() => {
-        notification.succes("Succesfully created file");
+        notifications.succes("Succesfully created file");
         form = {};
       });
   }
@@ -84,19 +86,9 @@
         inFolder: folderid
       })
       .then(() => {
-        notification.succes("Succesfully created file");
+        notifications.succes("Succesfully created file");
         form = {};
       });
-  }
-
-  function fileMenu(link, doc) {
-    const menu = {
-      "Open in new tab": { action: () => window.open(link, "_blank") },
-      "Remove file": { action: () => doc.ref.delete() }
-    };
-
-    // TODO: reenable context menu
-    //contextMenu.set(menu);
   }
 
   function dragStart(event, file) {}
@@ -137,7 +129,7 @@
 
       <!-- FOLDERS -->
       <LimitsizeGrid>
-        {#each folders as folder}
+        <SearchQuery items={folders} filterOn={'title'} let:item={folder}>
           <div
             class="folder"
             class:hoveringOverFolder={hoveringOverFolder === folder.id}
@@ -152,7 +144,7 @@
               <div slot="title">{folder.title}</div>
             </HoverContainer>
           </div>
-        {/each}
+        </SearchQuery>
 
         <HoverContainer
           on:click={createFolder}
@@ -175,10 +167,7 @@
         <div slot="title">Files</div>
 
         <SearchQuery items={files} filterOn={'title'} let:item={file}>
-          <div
-            on:mouseenter={() => fileMenu(`/files/${file.type}/${file.id}`, file)}
-            draggable={true}
-            on:dragstart={() => (fileBeingDragged = file)}>
+          <div draggable={true} on:dragstart={() => (fileBeingDragged = file)}>
             <HoverContainer
               on:click={() => $goto(`/files/${file.type}/${user.uid}/${file.id}`)}>
               <div slot="title">{file.title}</div>

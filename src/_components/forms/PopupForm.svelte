@@ -8,6 +8,6 @@
 
 {#if Object.keys(form).length}
   <PopUpContainer title={form.header} {onClose}>
-    <Form activeForm={form} />
+    <Form {form} />
   </PopUpContainer>
 {/if}

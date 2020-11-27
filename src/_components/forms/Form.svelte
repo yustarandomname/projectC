@@ -1,24 +1,28 @@
 <script>
+  import Radio from "./../inputs/Radio.svelte";
   import Input from "../inputs/Input.svelte";
 
   import { url } from "@sveltech/routify";
   import { notifications } from "../../_stores/NotificationStore.js";
-  import { showForm } from "./../../_stores/FormStore.js";
 
-  export let activeForm = {};
-  let dev = false;
+  export let form = {};
 
-  function validateForm(onSubmit) {
-    if (dev) {
-      console.warn(activeForm);
-      console.warn("you are running dev mode, so nothing is send");
-      return;
-    }
+  const handleSubmit = onSubmit => {
+    let isAllValid = true;
 
-    // TODO: do things before submiting
-    onSubmit();
-    showForm.set(false);
-  }
+    // if any attribute is required but is not valid =>
+    // whole form is not valid
+    Object.entries(form.fields).forEach(([title, attributes]) => {
+      if (attributes.required && !attributes.isValid) {
+        isAllValid = false;
+
+        // TODO: Replace with notifications
+        console.warn(title + " is not formated properly");
+      }
+    });
+
+    if (isAllValid) onSubmit();
+  };
 </script>
 
 <style>
@@ -56,35 +60,32 @@
 
 <form>
   <slot />
-  {#each Object.entries(activeForm.fields) as [title, attributes], index}
+  {#each Object.entries(form.fields) as [title, attributes], index}
     <!-- type: Header -->
     {#if attributes.type == 'header'}
       <div class="title">{title}</div>
+
+      <!-- type: Info -->
     {:else if attributes.type == 'info'}
       <p>{attributes.value}</p>
+
+      <!-- type: Radio -->
     {:else if attributes.type == 'radio'}
       <div class="radioContainer">
         <div style="width:100%">{title}</div>
-        <!-- TODO: re-enable Radio -->
-        <!-- <Radio {attributes} {title} /> -->
+        <Radio {attributes} {title} />
       </div>
+
       <!-- type: Submit -->
     {:else if attributes.type == 'submit'}
       <div class="positionSubmit">
         <input
           type="submit"
           value={title}
-          on:click|preventDefault={() => validateForm(attributes.onSubmit)} />
+          on:click|preventDefault={() => handleSubmit(attributes.onSubmit)} />
       </div>
     {:else}
-      <Input {title} {attributes} />
+      <Input {title} {attributes} {form} />
     {/if}
-  {:else}
-    <h3>your input is not properly defined</h3>
-    <p>
-      go to the
-      <a href={$url('docs')}>documentation</a>
-      page to find what is wrong
-    </p>
   {/each}
 </form>

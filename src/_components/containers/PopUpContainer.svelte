@@ -3,7 +3,7 @@
   import { fade } from "svelte/transition";
 
   import Icon from "./../icons/icon.svelte";
-  import RoundButton from "../buttons/Button.svelte";
+  import Button from "../buttons/Button.svelte";
 
   export let image = "";
   export let title = "undefined";
@@ -100,9 +100,7 @@
       </div>
     </div>
     <div class="closeContainer">
-      <RoundButton size={'2.5rem'} action={onClose}>
-        <Icon padding={'0.7rem 0.75rem'} icon={'delete-sign'} />
-      </RoundButton>
+      <Button on:click={onClose} icon={'x'} />
     </div>
     <div class="content">
       <slot />

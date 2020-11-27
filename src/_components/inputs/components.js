@@ -7,7 +7,7 @@ let defaultComponent = {
   raised: false,
   isValid: false,
   noPadding: false,
-  testValid: _ => true,
+  testValid: (value) => (value && value.length > 0),
   fullWidth: false,
   autoComplete: "off",
   value: ""

@@ -45,6 +45,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  :global(.centerTitle > *) {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 </style>
 
 <div class="relativeContainer" style="height:{ratio * 100}%">
